@@ -1,0 +1,6 @@
+.cache
+build
+*.exe
+*.ilk
+*.pdb
+.vscode

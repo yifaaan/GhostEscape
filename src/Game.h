@@ -1,0 +1,46 @@
+#pragma once
+
+#include <string_view>
+
+#include <glm/glm.hpp>
+#include <SDL3/SDL.h>
+#include <SDL3_image/SDL_image.h>
+#include <SDL3_mixer/SDL_mixer.h>
+#include <SDL3_ttf/SDL_ttf.h>
+
+class Game
+{
+private:
+    Game() = default;
+    Game(const Game&) = delete;
+    Game& operator=(const Game&) = delete;
+
+public:
+    ~Game() = default;
+
+    static Game& GetInstance()
+    {
+        static Game game;
+        return game;
+    }
+
+    void Run();
+    void Init(std::string_view title, int width, int height);
+    void HandleEvents();
+    void Update(float delta_time);
+    void Render();
+    void Clean();
+
+private:
+    glm::vec2 screen_size_{};
+    SDL_Window* window_{};
+    SDL_Renderer* renderer_{};
+    bool is_running_{true};
+    // 帧率
+    Uint64 fps_{60};
+    // 帧延迟 ns 理论
+    Uint64 frame_delay_{0};
+    // 帧间隔 s 实际
+    float delta_time_{0.f};
+    
+};
