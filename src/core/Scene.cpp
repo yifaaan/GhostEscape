@@ -6,3 +6,13 @@ void Scene::set_camera_position(const glm::vec2& p)
     // 限制相机移动范围
     camera_position_ = glm::clamp(camera_position_, glm::vec2{} - 100.f, world_size_ + 100.f);
 }
+
+void AddChildren(Object* object)
+{
+
+}
+
+void RemoveChildren(Object* object)
+{
+    
+}

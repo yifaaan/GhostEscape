@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Object.h"
+#include "ObjectWorld.h"
+#include "ObjectScreen.h"
 
 #include <vector>
 
@@ -42,10 +44,14 @@ public:
     {
         world_size_ = s;
     }
+
+    void AddChildren(Object* object) override;
+    void RemoveChildren(Object* object) override;
 protected:
     glm::vec2 world_size_{};
     // 相机位置
     glm::vec2 camera_position_{};
-    // 场景的物体
-    std::vector<Object*> objects_;
+
+    std::vector<ObjectWorld*> children_world_;
+    std::vector<ObjectScreen*> children_screen_;
 };
