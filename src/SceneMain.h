@@ -2,6 +2,8 @@
 
 #include "core/Scene.h"
 
+class Player;
+
 class SceneMain : public Scene
 {
 public:
@@ -17,5 +19,7 @@ public:
 private:
     void RenderBackground();
 
-    glm::vec2 word_size_{};
+
+
+    Player* player_{};
 };

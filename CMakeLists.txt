@@ -25,7 +25,11 @@ find_package(glm CONFIG REQUIRED)
 add_executable(${TARGET}
                     src/main.cpp
                     src/core/Game.cpp
-                    src/SceneMain.cpp)
+                    src/core/ObjectWorld.cpp
+                    src/core/Scene.cpp
+                    src/SceneMain.cpp
+                    src/Player.cpp
+                    )
 
 target_link_libraries(${TARGET}
                         PRIVATE SDL3::SDL3

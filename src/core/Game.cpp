@@ -158,8 +158,3 @@ void Game::DrawBoundary(const glm::vec2& top_left, const glm::vec2& bottom_right
     }
     SDL_SetRenderDrawColorFloat(renderer_, 0, 0, 0, 1);
 }
-
-glm::vec2 Game::screen_size() const
-{
-    return screen_size_;
-}
