@@ -9,6 +9,7 @@
 #include <SDL3_ttf/SDL_ttf.h>
 
 class Scene;
+class AssetStore;
 
 class Game
 {
@@ -41,10 +42,15 @@ public:
     {
         return screen_size_;
     }
-    
+
     Scene* current_scene()
     {
         return current_scene_;
+    }
+
+    AssetStore* asset_store()
+    {
+        return asset_store_;
     }
 
 private:
@@ -60,4 +66,6 @@ private:
     float delta_time_{0.f};
     
     Scene* current_scene_{};
+
+    AssetStore* asset_store_{};
 };

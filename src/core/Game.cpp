@@ -1,5 +1,7 @@
 #include "Game.h"
+
 #include "../SceneMain.h"
+#include "AssetStore.h"
 
 void Game::Run()
 {
@@ -71,6 +73,9 @@ void Game::Init(std::string_view title, int width, int height)
 
     frame_delay_ = 1000000000 / fps_;
 
+    // Load assets
+    asset_store_ = new AssetStore(renderer_);
+
     // 创建场景
     current_scene_ = new SceneMain();
     current_scene_->Init();
@@ -111,6 +116,11 @@ void Game::Clean()
     {
         current_scene_->Clean();
         delete current_scene_;
+    }
+    if (asset_store_)
+    {
+        asset_store_->Clean();
+        delete asset_store_;
     }
     if (renderer_)
     {

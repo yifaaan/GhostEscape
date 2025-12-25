@@ -16,6 +16,7 @@ void Player::Update(float delta_time)
 {
     KeyboardControl();
     Move(delta_time);
+    // 玩家移动的同时，同步相机移动
     SyncCamera();
 }
 
