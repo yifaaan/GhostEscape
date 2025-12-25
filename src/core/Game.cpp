@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "../SceneMain.h"
 
 void Game::Run()
 {
@@ -6,7 +7,7 @@ void Game::Run()
     {
         auto start = SDL_GetTicksNS();
         HandleEvents();
-        Update(0);
+        Update(delta_time_);
         Render();
         auto end = SDL_GetTicksNS();
         auto elapsed = end - start;
@@ -69,6 +70,10 @@ void Game::Init(std::string_view title, int width, int height)
     SDL_Log("Initialization complete");
 
     frame_delay_ = 1000000000 / fps_;
+
+    // 创建场景
+    current_scene_ = new SceneMain();
+    current_scene_->Init();
 }
 
 void Game::HandleEvents() {
@@ -81,23 +86,31 @@ void Game::HandleEvents() {
             is_running_ = false;
             break;
         default:
-            break;
+            current_scene_->HandleEvents(event);
         }
     }
 }
 
 void Game::Update(float delta_time)
 {
-
+    current_scene_->Update(delta_time);
 }
 
 void Game::Render()
 {
-
+    SDL_SetRenderDrawColor(renderer_, 0, 0, 0, 255);
+    SDL_RenderClear(renderer_);
+    current_scene_->Render();
+    SDL_RenderPresent(renderer_);
 }
 
 void Game::Clean()
 {
+    if (current_scene_)
+    {
+        current_scene_->Clean();
+        delete current_scene_;
+    }
     if (renderer_)
     {
         SDL_DestroyRenderer(renderer_);
@@ -108,5 +121,6 @@ void Game::Clean()
     }
     TTF_Quit();
     Mix_CloseAudio();
+    Mix_Quit();
     SDL_Quit();
 }

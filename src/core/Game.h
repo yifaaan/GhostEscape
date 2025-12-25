@@ -8,6 +8,8 @@
 #include <SDL3_mixer/SDL_mixer.h>
 #include <SDL3_ttf/SDL_ttf.h>
 
+class Scene;
+
 class Game
 {
 private:
@@ -43,4 +45,5 @@ private:
     // 帧间隔 s 实际
     float delta_time_{0.f};
     
+    Scene* current_scene_{};
 };
