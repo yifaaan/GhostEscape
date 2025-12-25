@@ -100,6 +100,7 @@ void Game::Render()
 {
     SDL_SetRenderDrawColor(renderer_, 0, 0, 0, 255);
     SDL_RenderClear(renderer_);
+    // DrawGrid({0, 0}, {screen_size_.x, screen_size_.y}, 50, {255, 255, 255, 255});
     current_scene_->Render();
     SDL_RenderPresent(renderer_);
 }
@@ -123,4 +124,23 @@ void Game::Clean()
     Mix_CloseAudio();
     Mix_Quit();
     SDL_Quit();
+}
+
+void Game::DrawGrid(const glm::vec2& top_left, const glm::vec2& bottom_right, float grid_width, SDL_FColor fcolor)
+{
+    SDL_SetRenderDrawColorFloat(renderer_, fcolor.r, fcolor.g, fcolor.b, fcolor.a);
+    for (float x = top_left.x; x <= bottom_right.x; x += grid_width)
+    {
+        SDL_RenderLine(renderer_, x, top_left.y, x, bottom_right.y);
+    }
+    for (float y = top_left.y; y <= bottom_right.y; y += grid_width)
+    {
+        SDL_RenderLine(renderer_, top_left.x, y, bottom_right.x, y);
+    }
+    SDL_SetRenderDrawColorFloat(renderer_, 0, 0, 0, 255);
+}
+
+glm::vec2 Game::screen_size() const
+{
+    return screen_size_;
 }

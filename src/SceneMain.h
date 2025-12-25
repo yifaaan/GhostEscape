@@ -13,4 +13,9 @@ public:
     virtual void Update(float delta_time) override;
     virtual void Render() override;
     virtual void Clean() override;
+
+private:
+    void RenderBackground();
+
+    glm::vec2 word_size_{};
 };

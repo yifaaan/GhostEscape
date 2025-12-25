@@ -18,7 +18,7 @@ public:
     virtual void Render() override {};
     virtual void Clean() override {};
 
-private:
+protected:
     // 相机位置
     glm::vec2 camera_position_{};
     // 场景的物体

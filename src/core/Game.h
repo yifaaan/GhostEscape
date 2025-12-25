@@ -33,6 +33,10 @@ public:
     void Render();
     void Clean();
 
+
+    void DrawGrid(const glm::vec2& top_left, const glm::vec2& bottom_right, float grid_width, SDL_FColor fcolor);
+
+    glm::vec2 screen_size() const;
 private:
     glm::vec2 screen_size_{};
     SDL_Window* window_{};
