@@ -35,6 +35,7 @@ public:
 
 
     void DrawGrid(const glm::vec2& top_left, const glm::vec2& bottom_right, float grid_width, SDL_FColor fcolor);
+    void DrawBoundary(const glm::vec2& top_left, const glm::vec2& bottom_right, float boundary_width, SDL_FColor fcolor);
 
     glm::vec2 screen_size() const;
 private:

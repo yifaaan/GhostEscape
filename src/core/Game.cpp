@@ -131,13 +131,32 @@ void Game::DrawGrid(const glm::vec2& top_left, const glm::vec2& bottom_right, fl
     SDL_SetRenderDrawColorFloat(renderer_, fcolor.r, fcolor.g, fcolor.b, fcolor.a);
     for (float x = top_left.x; x <= bottom_right.x; x += grid_width)
     {
+        if (x < 0.f || x > screen_size_.x)
+        {
+            continue;
+        }
         SDL_RenderLine(renderer_, x, top_left.y, x, bottom_right.y);
     }
     for (float y = top_left.y; y <= bottom_right.y; y += grid_width)
     {
+        if (y < 0.f || y > screen_size_.y)
+        {
+            continue;
+        }
         SDL_RenderLine(renderer_, top_left.x, y, bottom_right.x, y);
     }
-    SDL_SetRenderDrawColorFloat(renderer_, 0, 0, 0, 255);
+    SDL_SetRenderDrawColorFloat(renderer_, 0, 0, 0, 1);
+}
+
+void Game::DrawBoundary(const glm::vec2& top_left, const glm::vec2& bottom_right, float boundary_width, SDL_FColor fcolor)
+{
+    SDL_SetRenderDrawColorFloat(renderer_, fcolor.r, fcolor.g, fcolor.b, fcolor.a);
+    for (float i = 0.f; i < boundary_width; i++)
+    {
+        auto rect = SDL_FRect {.x = top_left.x - i, .y = top_left.y - i, .w = bottom_right.x - top_left.x + 2 * i, .h = bottom_right.y - top_left.y + 2 * i};
+        SDL_RenderRect(renderer_, &rect);
+    }
+    SDL_SetRenderDrawColorFloat(renderer_, 0, 0, 0, 1);
 }
 
 glm::vec2 Game::screen_size() const
