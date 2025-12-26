@@ -19,6 +19,17 @@ void Sprite::Render()
     game_.RenderTexture(texture_, p, size_);
 }
 
+Sprite* AddSpriteChild(ObjectScreen* parent, const std::string& path, float scale)
+{
+    auto sprite = new Sprite();
+    sprite->Init();
+    sprite->set_parent(parent);
+    sprite->set_texture(Texture{path});
+    sprite->SetScale(scale);
+    parent->AddChildren(sprite);
+    return sprite;
+}
+
 void Sprite::set_texture(const Texture& t)
 {
     texture_ = t;

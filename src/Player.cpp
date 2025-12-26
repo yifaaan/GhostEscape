@@ -1,15 +1,12 @@
 #include "Player.h"
 
+#include "affiliate/SpriteAnim.h"
 #include "core/Scene.h"
-#include "affiliate/Sprite.h"
 
 void Player::Init()
 {
     Actor::Init();
-    auto sprite = new Sprite();
-    sprite->set_texture(Texture{"assets/sprite/ghost-idle.png"});
-    sprite->set_parent(this);
-    AddChildren(sprite);
+    SpriteAnim::AddSpriteAnimChild(this, "assets/sprite/ghost-idle.png", 2.f);
 }
 
 void Player::HandleEvents(SDL_Event& event)
@@ -29,7 +26,7 @@ void Player::Update(float delta_time)
 void Player::Render()
 {
     Actor::Render();
-    game_.DrawBoundary(render_position_, render_position_ + glm::vec2{20.f, 20.f}, 10.f, {1.f, 0.f, 0.f, 1.f});
+    // game_.DrawBoundary(render_position_, render_position_ + glm::vec2{20.f, 20.f}, 10.f, {1.f, 0.f, 0.f, 1.f});
 }
 
 void Player::Clean()        

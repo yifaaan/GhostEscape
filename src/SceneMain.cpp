@@ -25,8 +25,8 @@ void SceneMain::Update(float delta_time)
 
 void SceneMain::Render()
 {
-    Scene::Render();
     RenderBackground();
+    Scene::Render();
 }
 
 void SceneMain::Clean()

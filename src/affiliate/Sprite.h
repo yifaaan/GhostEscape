@@ -23,8 +23,12 @@ class Sprite : public ObjectAffiliate
 public:
     void Render() override;
 
+    static Sprite* AddSpriteChild(ObjectScreen* parent, const std::string& path, float scale);
+    
     Texture texture() const { return texture_; }
-    void set_texture(const Texture& t);
+    virtual void set_texture(const Texture& t);
+
+    void SetScale(float s) { size_ *= s;}
 protected:
     Texture texture_;
 };
