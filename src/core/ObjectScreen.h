@@ -1,10 +1,13 @@
 #pragma once
 
+#include "Defs.h"
 #include "Object.h"
 
 class ObjectScreen : public Object
 {
 public:
+    void Init() override { type_ = ObjectType::kObjectScreen; }
+
     glm::vec2 render_position() const
     {
         return render_position_;

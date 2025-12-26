@@ -1,10 +1,13 @@
 #pragma once
 
+#include "Defs.h"
 #include "ObjectScreen.h"
 
 class ObjectWorld : public ObjectScreen
 {
 public:
+    void Init() override { type_ = ObjectType::kObjectWrold; }
+    
     void Update(float delta_time) override;
 
     glm::vec2 position() const

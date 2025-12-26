@@ -14,11 +14,11 @@ public:
     Scene() = default;
     virtual ~Scene() = default;
 
-    virtual void Init() override {};
-    virtual void HandleEvents(SDL_Event& event) override {};
-    virtual void Update(float delta_time) override {};
-    virtual void Render() override {};
-    virtual void Clean() override {};
+    void Init() override {};
+    void HandleEvents(SDL_Event& event) override;
+    void Update(float delta_time) override;
+    void Render() override;
+    void Clean() override;
 
     glm::vec2 WorldToScreen(const glm::vec2& world_position) const
     {

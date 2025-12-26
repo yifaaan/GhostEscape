@@ -31,6 +31,7 @@ add_executable(${TARGET}
                     src/core/Object.cpp
                     src/SceneMain.cpp
                     src/Player.cpp
+                    src/affiliate/Sprite.cpp
                     )
 
 target_link_libraries(${TARGET}

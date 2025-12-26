@@ -1,19 +1,25 @@
 #include "Player.h"
 
 #include "core/Scene.h"
+#include "affiliate/Sprite.h"
 
 void Player::Init()
 {
-
+    Actor::Init();
+    auto sprite = new Sprite();
+    sprite->set_texture(Texture{"assets/sprite/ghost-idle.png"});
+    sprite->set_parent(this);
+    AddChildren(sprite);
 }
 
 void Player::HandleEvents(SDL_Event& event)
 {
-    
+    Actor::HandleEvents(event);
 }
 
 void Player::Update(float delta_time)
 {
+    Actor::Update(delta_time);
     KeyboardControl();
     Move(delta_time);
     // 玩家移动的同时，同步相机移动
@@ -22,12 +28,13 @@ void Player::Update(float delta_time)
 
 void Player::Render()
 {
+    Actor::Render();
     game_.DrawBoundary(render_position_, render_position_ + glm::vec2{20.f, 20.f}, 10.f, {1.f, 0.f, 0.f, 1.f});
 }
 
 void Player::Clean()        
 {
-     
+     Actor::Clean();
 }
 
 void Player::KeyboardControl()

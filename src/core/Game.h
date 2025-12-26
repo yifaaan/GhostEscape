@@ -10,6 +10,7 @@
 
 class Scene;
 class AssetStore;
+class Texture;
 
 class Game
 {
@@ -37,7 +38,8 @@ public:
 
     void DrawGrid(const glm::vec2& top_left, const glm::vec2& bottom_right, float grid_width, SDL_FColor fcolor);
     void DrawBoundary(const glm::vec2& top_left, const glm::vec2& bottom_right, float boundary_width, SDL_FColor fcolor);
-
+    void RenderTexture(const Texture& texture, const glm::vec2& position, const glm::vec2& size);
+    
     glm::vec2 screen_size() const
     {
         return screen_size_;
