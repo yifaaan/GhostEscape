@@ -6,7 +6,9 @@
 void Player::Init()
 {
     Actor::Init();
-    SpriteAnim::AddSpriteAnimChild(this, "assets/sprite/ghost-idle.png", 2.f);
+    sprite_idle_ = SpriteAnim::AddSpriteAnimChild(this, "assets/sprite/ghost-idle.png", 2.f);
+    sprite_move_ = SpriteAnim::AddSpriteAnimChild(this, "assets/sprite/ghost-move.png", 2.f);
+    sprite_move_->set_active(false);
 }
 
 void Player::HandleEvents(SDL_Event& event)
@@ -18,6 +20,7 @@ void Player::Update(float delta_time)
 {
     Actor::Update(delta_time);
     KeyboardControl();
+    CheckState();
     Move(delta_time);
     // 玩家移动的同时，同步相机移动
     SyncCamera();
@@ -68,4 +71,44 @@ void Player::Move(float delta_time)
 void Player::SyncCamera()
 {
     game_.current_scene()->set_camera_position(position_ - game_.screen_size() / 2.f);
+}
+
+void Player::CheckState()
+{
+    if (velocity_.x < 0.f)
+    {
+        sprite_move_->set_flip(true);
+        sprite_idle_->set_flip(true);
+    }
+    else
+    {
+        sprite_move_->set_flip(false);
+        sprite_idle_->set_flip(false);
+    }
+    
+    // 动静切换
+    bool new_is_moving = glm::length(velocity_) > 0.1f;
+    if (new_is_moving != is_moving_)
+    {
+        is_moving_ = new_is_moving;
+        ChangeState(is_moving_);
+    }
+}
+
+void Player::ChangeState(bool is_moving)
+{
+    if (is_moving)
+    {
+        sprite_idle_->set_active(false);
+        sprite_move_->set_active(true);
+        sprite_move_->set_current_frame(sprite_idle_->current_frame());
+        sprite_move_->set_current_frame(sprite_idle_->frame_timer());
+    }
+    else
+    {
+        sprite_idle_->set_active(true);
+        sprite_move_->set_active(false);
+        sprite_idle_->set_current_frame(sprite_idle_->current_frame());
+        sprite_idle_->set_current_frame(sprite_idle_->frame_timer());
+    }
 }

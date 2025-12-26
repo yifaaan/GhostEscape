@@ -24,9 +24,13 @@ public:
 
     ObjectType type() const { return type_; }
     void set_type(ObjectType t) { type_ = t; }
+
+    void set_active(bool a) { is_active_ = a; }
+    bool is_active() const { return is_active_; }
     
 protected:
     Game& game_ = Game::GetInstance();
     std::vector<Object*> children_;
     ObjectType type_{ObjectType::kNone};
+    bool is_active_{true};
 };

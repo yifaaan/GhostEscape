@@ -24,11 +24,19 @@ public:
     void Render() override;
 
     static Sprite* AddSpriteChild(ObjectScreen* parent, const std::string& path, float scale);
-    
+
     Texture texture() const { return texture_; }
     virtual void set_texture(const Texture& t);
 
     void SetScale(float s) { size_ *= s;}
+
+    bool flip() const { return texture_.flip; }
+    void set_flip(bool f) { texture_.flip = f; }
+
+    float angle() const { return texture_.angle; }
+    void set_angle(float a) { texture_.angle = a; }
+
+
 protected:
     Texture texture_;
 };

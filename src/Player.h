@@ -1,6 +1,7 @@
 #pragma once
 
 #include "core/Actor.h"
+#include "affiliate/SpriteAnim.h"
 
 class Player : public Actor
 {
@@ -16,4 +17,13 @@ public:
     void Move(float delta_time);
 
     void SyncCamera();
+
+    void CheckState();
+
+    void ChangeState(bool is_moving);
+
+private:
+    bool is_moving_{};
+    SpriteAnim* sprite_idle_{};
+    SpriteAnim* sprite_move_{};
 };

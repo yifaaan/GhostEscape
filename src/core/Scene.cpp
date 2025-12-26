@@ -10,10 +10,18 @@ void Scene::HandleEvents(SDL_Event& event)
     // 先处理screen事件
     std::ranges::for_each(children_screen_, [&event](auto o)
     {
+        if (!o->is_active())
+        {
+            return;
+        }
         o->HandleEvents(event);
     });
     std::ranges::for_each(children_world_, [&event](auto o)
     {
+        if (!o->is_active())
+        {
+            return;
+        }
         o->HandleEvents(event);
     });
 }
@@ -24,10 +32,18 @@ void Scene::Update(float delta_time)
     // 先更新世界物体的逻辑
     std::ranges::for_each(children_world_, [delta_time](auto o)
     {
+        if (!o->is_active())
+        {
+            return;
+        }
         o->Update(delta_time);
     });
     std::ranges::for_each(children_screen_, [delta_time](auto o)
     {
+        if (!o->is_active())
+        {
+            return;
+        }
         o->Update(delta_time);
     });
 }
@@ -37,10 +53,18 @@ void Scene::Render()
     Object::Render();
     std::ranges::for_each(children_world_, [](auto o)
     {
+        if (!o->is_active())
+        {
+            return;
+        }
         o->Render();
     });
     std::ranges::for_each(children_screen_, [](auto o)
     {
+        if (!o->is_active())
+        {
+            return;
+        }
         o->Render();
     });
 }
