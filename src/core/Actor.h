@@ -5,6 +5,8 @@
 class Actor : public ObjectWorld
 {
 public:
+    void Move(float delta_time);
+
     glm::vec2 velocity() const
     {
         return velocity_;

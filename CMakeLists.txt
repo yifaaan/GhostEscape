@@ -29,8 +29,10 @@ add_executable(${TARGET}
                     src/core/Scene.cpp
                     src/core/AssetStore.cpp
                     src/core/Object.cpp
+                    src/core/Actor.cpp
                     src/SceneMain.cpp
                     src/Player.cpp
+                    src/Enemy.cpp
                     src/affiliate/Sprite.cpp
                     src/affiliate/SpriteAnim.cpp
                     )

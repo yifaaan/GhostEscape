@@ -14,8 +14,6 @@ public:
 
     void KeyboardControl();
 
-    void Move(float delta_time);
-
     void SyncCamera();
 
     void CheckState();
