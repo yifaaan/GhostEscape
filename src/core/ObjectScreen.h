@@ -4,14 +4,16 @@
 #include "Object.h"
 
 class ObjectScreen : public Object {
-   public:
+public:
     void Init() override { type_ = ObjectType::kObjectScreen; }
 
     glm::vec2 render_position() const { return render_position_; }
 
     virtual void set_render_position(const glm::vec2& render_position) { render_position_ = render_position; }
 
-   protected:
+    virtual glm::vec2 position() const { return {}; }
+
+protected:
     // 含义： 对象在屏幕上的像素位置
     //
     // 坐标系： 屏幕左上角为 (0, 0)，右下角为 (1280, 720)

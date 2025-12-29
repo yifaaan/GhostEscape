@@ -17,7 +17,7 @@ struct Texture {
 };
 
 class Sprite : public ObjectAffiliate {
-   public:
+public:
     void Render() override;
 
     static Sprite* AddSpriteChild(ObjectScreen* parent, const std::string& path, float scale);
@@ -36,7 +36,7 @@ class Sprite : public ObjectAffiliate {
     bool is_finished() const { return is_finished_; }
     void set_finished(bool f) { is_finished_ = f; }
 
-   protected:
+protected:
     Texture texture_;
     bool is_finished_{};
 };

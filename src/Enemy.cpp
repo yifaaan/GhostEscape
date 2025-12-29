@@ -1,8 +1,8 @@
 #include "Enemy.h"
 
 #include "Player.h"
+#include "affiliate/Collider.h"
 #include "affiliate/SpriteAnim.h"
-#include "core/Scene.h"
 
 void Enemy::Init() {
     Actor::Init();
@@ -13,26 +13,19 @@ void Enemy::Init() {
     anim_dead_->set_active(false);
     anim_dead_->set_loop(false);
     current_anim_ = anim_normal_;
+
+    collider_ = Collider::AddColliderChild(this, anim_normal_->size(), Collider::Type::kCircle);
 }
 
 void Enemy::Update(float delta_time) {
     Actor::Update(delta_time);
     AimTarget(target_);
     Move(delta_time);
-    timer_ += delta_time;
-    if (timer_ > 2.f && timer_ < 4.f) {
-        ChangeState(State::kHurt);
-    } else if (timer_ > 4.f) {
-        timer_ = 0.f;
-        ChangeState(State::kDead);
-    }
-    Remove();
+    Attack();
 }
 
 void Enemy::AimTarget(Player* p) {
-    if (!p) {
-        return;
-    }
+    if (!p) return;
     auto direction = p->position() - position_;
     direction = glm::normalize(direction);
     velocity_ = direction * max_speed_;
@@ -65,5 +58,12 @@ void Enemy::ChangeState(State s) {
 void Enemy::Remove() {
     if (anim_dead_->is_finished()) {
         need_remove_ = true;
+    }
+}
+
+void Enemy::Attack() {
+    if (!collider_ || !target_->collider()) return;
+    if (collider_->IsColliding(*target_->collider())) {
+        SDL_Log("Attack");
     }
 }

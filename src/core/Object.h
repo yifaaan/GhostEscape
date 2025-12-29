@@ -7,7 +7,7 @@
 #include "Game.h"
 
 class Object {
-   public:
+public:
     // 子类的构造和虚构必须为空
     Object() = default;
     virtual ~Object() = default;
@@ -32,7 +32,7 @@ class Object {
     bool need_remove() const { return need_remove_; }
     void set_need_remove(bool r) { need_remove_ = r; }
 
-   protected:
+protected:
     Game& game_ = Game::GetInstance();
     std::vector<Object*> children_;
     ObjectType type_{ObjectType::kNone};

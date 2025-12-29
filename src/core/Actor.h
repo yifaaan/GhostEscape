@@ -3,7 +3,7 @@
 #include "ObjectWorld.h"
 
 class Actor : public ObjectWorld {
-   public:
+public:
     void Move(float delta_time);
 
     glm::vec2 velocity() const { return velocity_; }
@@ -12,7 +12,7 @@ class Actor : public ObjectWorld {
     float max_speed() const { return max_speed_; }
     void set_max_speed(float s) { max_speed_ = s; }
 
-   protected:
+protected:
     // speed
     glm::vec2 velocity_{};
     // 最大速度大小

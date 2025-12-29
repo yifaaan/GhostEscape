@@ -13,12 +13,12 @@ class AssetStore;
 class Texture;
 
 class Game {
-   private:
+private:
     Game() = default;
     Game(const Game&) = delete;
     Game& operator=(const Game&) = delete;
 
-   public:
+public:
     ~Game() = default;
 
     static Game& GetInstance() {
@@ -37,14 +37,15 @@ class Game {
     void DrawBoundary(const glm::vec2& top_left, const glm::vec2& bottom_right, float boundary_width,
                       SDL_FColor fcolor);
     void RenderTexture(const Texture& texture, const glm::vec2& position, const glm::vec2& size);
-
+    void RenderFillCircle(const glm::vec2& position, const glm::vec2& size, float alpha);
+    
     glm::vec2 screen_size() const { return screen_size_; }
 
     Scene* current_scene() { return current_scene_; }
 
     AssetStore* asset_store() { return asset_store_; }
 
-   private:
+private:
     glm::vec2 screen_size_{};
     SDL_Window* window_{};
     SDL_Renderer* renderer_{};

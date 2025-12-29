@@ -4,16 +4,17 @@
 #include "core/Actor.h"
 
 class Player;
+class Collider;
 
 class Enemy : public Actor {
-   private:
+private:
     enum class State {
         kNormal,
         kHurt,
         kDead,
     };
 
-   public:
+public:
     void Init() override;
 
     void Update(float delta_time) override;
@@ -28,12 +29,14 @@ class Enemy : public Actor {
 
     void Remove();
 
-   private:
+    void Attack();
+
+private:
     Player* target_{};
     State current_state_{State::kNormal};
     SpriteAnim* anim_normal_{};
     SpriteAnim* anim_hurt_{};
     SpriteAnim* anim_dead_{};
     SpriteAnim* current_anim_{};
-    float timer_{};
+    Collider* collider_{};
 };

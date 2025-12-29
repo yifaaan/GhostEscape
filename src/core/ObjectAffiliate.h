@@ -3,7 +3,7 @@
 #include "ObjectScreen.h"
 
 class ObjectAffiliate : public Object {
-   public:
+public:
     ObjectScreen* parent() { return parent_; }
     void set_parent(ObjectScreen* p) { parent_ = p; }
 
@@ -13,7 +13,7 @@ class ObjectAffiliate : public Object {
     glm::vec2 size() const { return size_; }
     void set_size(const glm::vec2& s) { size_ = s; }
 
-   protected:
+protected:
     ObjectScreen* parent_{};
     // 相对parent的
     glm::vec2 offset_{};

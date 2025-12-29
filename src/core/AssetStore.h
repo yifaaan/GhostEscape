@@ -9,7 +9,7 @@
 #include <unordered_map>
 
 class AssetStore {
-   public:
+public:
     explicit AssetStore(SDL_Renderer* renderer) : renderer_(renderer) {}
     ~AssetStore() = default;
 
@@ -30,7 +30,7 @@ class AssetStore {
     const std::unordered_map<std::string, Mix_Music*> musics() const { return musics_; }
     const std::unordered_map<std::string, TTF_Font*> fonts() const { return fonts_; }
 
-   private:
+private:
     SDL_Renderer* renderer_{};
     std::unordered_map<std::string, SDL_Texture*> textures_;
     std::unordered_map<std::string, Mix_Chunk*> chunks_;

@@ -7,4 +7,4 @@ BasedOnStyle:    Google
 ColumnLimit:     120
 PointerAlignment: Left
 IndentWidth:     4
-
+AccessModifierOffset: -4

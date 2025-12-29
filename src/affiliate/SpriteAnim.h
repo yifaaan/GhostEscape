@@ -3,7 +3,7 @@
 #include "Sprite.h"
 
 class SpriteAnim : public Sprite {
-   public:
+public:
     void Update(float delta_time) override;
 
     static SpriteAnim* AddSpriteAnimChild(ObjectScreen* parent, const std::string& path, float scale);
@@ -21,7 +21,7 @@ class SpriteAnim : public Sprite {
     bool is_loop() const { return is_loop_; }
     void set_loop(bool l) { is_loop_ = l; }
 
-   private:
+private:
     int current_frame_{};
     int total_frame_{};
     int fps_{10};

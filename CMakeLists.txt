@@ -35,6 +35,7 @@ add_executable(${TARGET}
                     src/Enemy.cpp
                     src/affiliate/Sprite.cpp
                     src/affiliate/SpriteAnim.cpp
+                    src/affiliate/Collider.cpp
                     )
 
 target_link_libraries(${TARGET}

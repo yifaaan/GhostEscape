@@ -5,7 +5,7 @@
 class Player;
 
 class SceneMain : public Scene {
-   public:
+public:
     SceneMain() = default;
     virtual ~SceneMain() = default;
 
@@ -15,7 +15,7 @@ class SceneMain : public Scene {
     virtual void Render() override;
     virtual void Clean() override;
 
-   private:
+private:
     void RenderBackground();
 
     Player* player_{};

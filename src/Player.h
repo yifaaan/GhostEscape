@@ -4,7 +4,7 @@
 #include "core/Actor.h"
 
 class Player : public Actor {
-   public:
+public:
     void Init() override;
     void HandleEvents(SDL_Event& event) override;
     void Update(float delta_time) override;
@@ -19,7 +19,7 @@ class Player : public Actor {
 
     void ChangeState(bool is_moving);
 
-   private:
+private:
     bool is_moving_{};
     SpriteAnim* sprite_idle_{};
     SpriteAnim* sprite_move_{};

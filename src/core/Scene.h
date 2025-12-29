@@ -8,7 +8,7 @@
 #include "ObjectWorld.h"
 
 class Scene : public Object {
-   public:
+public:
     Scene() = default;
     virtual ~Scene() = default;
 
@@ -31,7 +31,7 @@ class Scene : public Object {
     void AddChildren(Object* object) override;
     void RemoveChildren(Object* object) override;
 
-   protected:
+protected:
     glm::vec2 world_size_{};
     // 相机位置
     glm::vec2 camera_position_{};
