@@ -7,80 +7,69 @@
 void Scene::HandleEvents(SDL_Event& event)
 {
     Object::HandleEvents(event);
-    // 先处理screen事件
-    std::ranges::for_each(children_screen_, [&event](auto o)
+
+    for (auto* o : children_screen_ | std::views::filter(&Object::is_active))
     {
-        if (!o->is_active())
-        {
-            return;
-        }
         o->HandleEvents(event);
-    });
-    std::ranges::for_each(children_world_, [&event](auto o)
+    }
+
+    for (auto* o : children_world_ | std::views::filter(&Object::is_active))
     {
-        if (!o->is_active())
-        {
-            return;
-        }
         o->HandleEvents(event);
-    });
+    }
 }
 
 void Scene::Update(float delta_time)
 {
     Object::Update(delta_time);
-    // 先更新世界物体的逻辑
-    std::ranges::for_each(children_world_, [delta_time](auto o)
-    {
-        if (!o->is_active())
-        {
-            return;
-        }
-        o->Update(delta_time);
+
+    std::erase_if(children_world_, [](Object* o) {
+        if (!o->need_remove())
+            return false;
+        o->Clean();
+        delete o;
+        SDL_Log("Scene: remove world children: %p", o);
+        return true;
     });
-    std::ranges::for_each(children_screen_, [delta_time](auto o)
+    for (auto* o : children_world_ | std::views::filter(&Object::is_active))
     {
-        if (!o->is_active())
-        {
-            return;
-        }
         o->Update(delta_time);
+    }
+
+    std::erase_if(children_screen_, [](Object* o) {
+        if (!o->need_remove())
+            return false;
+        o->Clean();
+        delete o;
+        return true;
     });
+    for (auto* o : children_screen_ | std::views::filter(&Object::is_active))
+    {
+        o->Update(delta_time);
+    }
 }
 
 void Scene::Render()
 {
     Object::Render();
-    std::ranges::for_each(children_world_, [](auto o)
+
+    for (auto* o : children_world_ | std::views::filter(&Object::is_active))
     {
-        if (!o->is_active())
-        {
-            return;
-        }
         o->Render();
-    });
-    std::ranges::for_each(children_screen_, [](auto o)
+    }
+
+    for (auto* o : children_screen_ | std::views::filter(&Object::is_active))
     {
-        if (!o->is_active())
-        {
-            return;
-        }
         o->Render();
-    });
+    }
 }
 
 void Scene::Clean()
 {
     Object::Clean();
-    std::ranges::for_each(children_world_, [](auto o)
-    {
-        o->Clean();
-    });
+    std::ranges::for_each(children_world_, &Object::Clean);
     children_world_.clear();
-    std::ranges::for_each(children_screen_, [](auto o)
-    {
-        o->Clean();
-    });
+    std::ranges::for_each(children_screen_, &Object::Clean);
     children_screen_.clear();
 }
 
@@ -112,13 +101,13 @@ void Scene::RemoveChildren(Object* object)
     switch (object->type())
     {
     case ObjectType::kObjectWrold:
-        children_world_.erase(std::remove(children_world_.begin(), children_world_.end(), object), children_world_.end());
+        std::erase(children_world_, dynamic_cast<ObjectWorld*>(object));
         break;
     case ObjectType::kObjectScreen:
-        children_screen_.erase(std::remove(children_screen_.begin(), children_screen_.end(), object), children_screen_.end());
+        std::erase(children_screen_, dynamic_cast<ObjectScreen*>(object));
         break;
     default:
-        children_.erase(std::remove(children_.begin(), children_.end(), object), children_.end());
+        std::erase(children_, object);
         break;
     }
 }

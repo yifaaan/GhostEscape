@@ -28,9 +28,13 @@ public:
     void set_active(bool a) { is_active_ = a; }
     bool is_active() const { return is_active_; }
     
+    bool need_remove() const { return need_remove_; }
+    void set_need_remove(bool r) { need_remove_ = r; }
+    
 protected:
     Game& game_ = Game::GetInstance();
     std::vector<Object*> children_;
     ObjectType type_{ObjectType::kNone};
     bool is_active_{true};
+    bool need_remove_{};
 };

@@ -1,10 +1,10 @@
 #include "SceneMain.h"
 
-#include "Player.h"
 #include "Enemy.h"
+#include "Player.h"
 
-void SceneMain::Init()
-{
+
+void SceneMain::Init() {
     Scene::Init();
     world_size_ = game_.screen_size() * 3.0f;
     camera_position_ = world_size_ / 2.f - game_.screen_size() / 2.f;
@@ -21,30 +21,21 @@ void SceneMain::Init()
     AddChildren(enemy);
 }
 
-void SceneMain::HandleEvents(SDL_Event& event)
-{
-    Scene::HandleEvents(event);
-}
+void SceneMain::HandleEvents(SDL_Event& event) { Scene::HandleEvents(event); }
 
-void SceneMain::Update(float delta_time)
-{
+void SceneMain::Update(float delta_time) {
     Scene::Update(delta_time);
     // camera_position_ += glm::vec2{10, 10};
 }
 
-void SceneMain::Render()
-{
+void SceneMain::Render() {
     RenderBackground();
     Scene::Render();
 }
 
-void SceneMain::Clean()
-{
-    Scene::Clean();
-}
+void SceneMain::Clean() { Scene::Clean(); }
 
-void SceneMain::RenderBackground()
-{
+void SceneMain::RenderBackground() {
     auto start = -camera_position_;
     auto end = world_size_ - camera_position_;
     game_.DrawGrid(start, end, 80.f, {0.5, 0.5, 0.5, 1.0});

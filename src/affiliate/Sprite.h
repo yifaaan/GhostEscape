@@ -36,7 +36,11 @@ public:
     float angle() const { return texture_.angle; }
     void set_angle(float a) { texture_.angle = a; }
 
+    bool is_finished() const { return is_finished_; }
+    void set_finished(bool f) { is_finished_ = f; }
+
 
 protected:
     Texture texture_;
+    bool is_finished_{};
 };

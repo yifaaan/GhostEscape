@@ -3,6 +3,10 @@
 
 void SpriteAnim::Update(float delta_time)
 {
+    if (is_finished_)
+    {
+        return;
+    }
     Sprite::Update(delta_time);
     frame_timer_ += delta_time;
     if (frame_timer_ > 1.f / fps_)
@@ -11,6 +15,10 @@ void SpriteAnim::Update(float delta_time)
         if (current_frame_ >= total_frame_)
         {
             current_frame_ = 0;
+            if (!is_loop_)
+            {
+                is_finished_ = true;
+            }
         }
         frame_timer_ = 0.f;
     }

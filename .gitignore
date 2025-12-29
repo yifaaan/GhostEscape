@@ -4,3 +4,4 @@ build
 *.ilk
 *.pdb
 .vscode
+compile_commands.json

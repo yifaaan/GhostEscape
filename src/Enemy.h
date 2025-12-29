@@ -1,11 +1,20 @@
 #pragma once
 
 #include "core/Actor.h"
+#include "affiliate/SpriteAnim.h"
 
 class Player;
 
 class Enemy : public Actor
 {
+private:
+    enum class State
+    {
+        kNormal,
+        kHurt,
+        kDead,
+    };
+
 public:
     void Init() override;
     
@@ -22,6 +31,16 @@ public:
 
     void AimTarget(Player* p);
 
+    void CheckState();
+    void ChangeState(State s);
+
+    void Remove();
 private:
     Player* target_{};
+    State current_state_{State::kNormal};
+    SpriteAnim* anim_normal_{};
+    SpriteAnim* anim_hurt_{};
+    SpriteAnim* anim_dead_{};
+    SpriteAnim* current_anim_{};
+    float timer_{};
 };

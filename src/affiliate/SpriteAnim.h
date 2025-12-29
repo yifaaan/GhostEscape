@@ -43,10 +43,20 @@ public:
     {
         frame_timer_ = t;
     }
+    bool is_loop() const
+    {
+        return is_loop_;
+    }
+    void set_loop(bool l)
+    {
+        is_loop_ = l;
+    }
+    
 
 private:
     int current_frame_{};
     int total_frame_{};
     int fps_{10};
     float frame_timer_{};
+    bool is_loop_{true};
 };

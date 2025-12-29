@@ -11,7 +11,7 @@ Texture::Texture(const std::string& path)
 void Sprite::Render()
 {
     ObjectAffiliate::Render();
-    if (!texture_.texture || !parent_)
+    if (!texture_.texture || !parent_ || is_finished_)
     {
         return;
     }
