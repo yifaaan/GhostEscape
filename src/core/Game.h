@@ -1,29 +1,27 @@
 #pragma once
 
-#include <string_view>
-
-#include <glm/glm.hpp>
 #include <SDL3/SDL.h>
 #include <SDL3_image/SDL_image.h>
 #include <SDL3_mixer/SDL_mixer.h>
 #include <SDL3_ttf/SDL_ttf.h>
 
+#include <glm/glm.hpp>
+#include <string_view>
+
 class Scene;
 class AssetStore;
 class Texture;
 
-class Game
-{
-private:
+class Game {
+   private:
     Game() = default;
     Game(const Game&) = delete;
     Game& operator=(const Game&) = delete;
 
-public:
+   public:
     ~Game() = default;
 
-    static Game& GetInstance()
-    {
+    static Game& GetInstance() {
         static Game game;
         return game;
     }
@@ -35,27 +33,18 @@ public:
     void Render();
     void Clean();
 
-
     void DrawGrid(const glm::vec2& top_left, const glm::vec2& bottom_right, float grid_width, SDL_FColor fcolor);
-    void DrawBoundary(const glm::vec2& top_left, const glm::vec2& bottom_right, float boundary_width, SDL_FColor fcolor);
+    void DrawBoundary(const glm::vec2& top_left, const glm::vec2& bottom_right, float boundary_width,
+                      SDL_FColor fcolor);
     void RenderTexture(const Texture& texture, const glm::vec2& position, const glm::vec2& size);
-    
-    glm::vec2 screen_size() const
-    {
-        return screen_size_;
-    }
 
-    Scene* current_scene()
-    {
-        return current_scene_;
-    }
+    glm::vec2 screen_size() const { return screen_size_; }
 
-    AssetStore* asset_store()
-    {
-        return asset_store_;
-    }
+    Scene* current_scene() { return current_scene_; }
 
-private:
+    AssetStore* asset_store() { return asset_store_; }
+
+   private:
     glm::vec2 screen_size_{};
     SDL_Window* window_{};
     SDL_Renderer* renderer_{};
@@ -66,7 +55,7 @@ private:
     Uint64 frame_delay_{0};
     // 帧间隔 s 实际
     float delta_time_{0.f};
-    
+
     Scene* current_scene_{};
 
     AssetStore* asset_store_{};

@@ -1,16 +1,15 @@
 #pragma once
 
-#include <unordered_map>
-#include <string>
-
 #include <SDL3/SDL.h>
 #include <SDL3_image/SDL_image.h>
 #include <SDL3_mixer/SDL_mixer.h>
 #include <SDL3_ttf/SDL_ttf.h>
 
-class AssetStore
-{
-public:
+#include <string>
+#include <unordered_map>
+
+class AssetStore {
+   public:
     explicit AssetStore(SDL_Renderer* renderer) : renderer_(renderer) {}
     ~AssetStore() = default;
 
@@ -20,7 +19,7 @@ public:
     void LoadFonts(std::string path, int font_size);
 
     void Clean();
-    
+
     SDL_Texture* texture(std::string path);
     Mix_Chunk* chunk(std::string path);
     Mix_Music* music(std::string path);
@@ -31,7 +30,7 @@ public:
     const std::unordered_map<std::string, Mix_Music*> musics() const { return musics_; }
     const std::unordered_map<std::string, TTF_Font*> fonts() const { return fonts_; }
 
-private:
+   private:
     SDL_Renderer* renderer_{};
     std::unordered_map<std::string, SDL_Texture*> textures_;
     std::unordered_map<std::string, Mix_Chunk*> chunks_;

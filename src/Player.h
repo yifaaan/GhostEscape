@@ -1,11 +1,10 @@
 #pragma once
 
-#include "core/Actor.h"
 #include "affiliate/SpriteAnim.h"
+#include "core/Actor.h"
 
-class Player : public Actor
-{
-public:
+class Player : public Actor {
+   public:
     void Init() override;
     void HandleEvents(SDL_Event& event) override;
     void Update(float delta_time) override;
@@ -20,7 +19,7 @@ public:
 
     void ChangeState(bool is_moving);
 
-private:
+   private:
     bool is_moving_{};
     SpriteAnim* sprite_idle_{};
     SpriteAnim* sprite_move_{};

@@ -1,16 +1,14 @@
 #pragma once
 
-#include "Object.h"
-#include "ObjectWorld.h"
-#include "ObjectScreen.h"
-
+#include <glm/glm.hpp>
 #include <vector>
 
-#include <glm/glm.hpp>
+#include "Object.h"
+#include "ObjectScreen.h"
+#include "ObjectWorld.h"
 
-class Scene : public Object
-{
-public:
+class Scene : public Object {
+   public:
     Scene() = default;
     virtual ~Scene() = default;
 
@@ -20,34 +18,20 @@ public:
     void Render() override;
     void Clean() override;
 
-    glm::vec2 WorldToScreen(const glm::vec2& world_position) const
-    {
-        return world_position - camera_position_;
-    }
+    glm::vec2 WorldToScreen(const glm::vec2& world_position) const { return world_position - camera_position_; }
 
-    glm::vec2 ScreenToWorld(const glm::vec2& screen_position) const
-    {
-        return screen_position + camera_position_;
-    }
+    glm::vec2 ScreenToWorld(const glm::vec2& screen_position) const { return screen_position + camera_position_; }
 
-    glm::vec2 camera_position() const
-    {
-        return camera_position_;
-    }
+    glm::vec2 camera_position() const { return camera_position_; }
     void set_camera_position(const glm::vec2& p);
 
-    glm::vec2 world_size() const
-    {
-        return world_size_;
-    }
-    void set_world_size(const glm::vec2& s)
-    {
-        world_size_ = s;
-    }
+    glm::vec2 world_size() const { return world_size_; }
+    void set_world_size(const glm::vec2& s) { world_size_ = s; }
 
     void AddChildren(Object* object) override;
     void RemoveChildren(Object* object) override;
-protected:
+
+   protected:
     glm::vec2 world_size_{};
     // 相机位置
     glm::vec2 camera_position_{};

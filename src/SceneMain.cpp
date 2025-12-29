@@ -3,7 +3,6 @@
 #include "Enemy.h"
 #include "Player.h"
 
-
 void SceneMain::Init() {
     Scene::Init();
     world_size_ = game_.screen_size() * 3.0f;

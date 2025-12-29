@@ -4,9 +4,8 @@
 
 class Player;
 
-class SceneMain : public Scene
-{
-public:
+class SceneMain : public Scene {
+   public:
     SceneMain() = default;
     virtual ~SceneMain() = default;
 
@@ -16,10 +15,8 @@ public:
     virtual void Render() override;
     virtual void Clean() override;
 
-private:
+   private:
     void RenderBackground();
-
-
 
     Player* player_{};
 };

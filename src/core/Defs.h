@@ -1,7 +1,6 @@
 #pragma once
 
-enum class ObjectType
-{
+enum class ObjectType {
     kNone,
     kObjectWrold,
     kObjectScreen,
