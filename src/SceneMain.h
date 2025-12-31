@@ -2,6 +2,7 @@
 
 #include "core/Scene.h"
 
+class Spawner;
 class Player;
 
 class SceneMain : public Scene
@@ -20,4 +21,6 @@ private:
     void RenderBackground();
 
     Player* player_{};
+
+    Spawner* spawner_{};
 };

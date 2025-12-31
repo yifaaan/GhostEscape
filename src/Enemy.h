@@ -17,6 +17,8 @@ private:
     };
 
 public:
+    static Enemy* AddEnemyChild(Object* parent, Player* target, const glm::vec2& position);
+
     void Init() override;
 
     void Update(float delta_time) override;

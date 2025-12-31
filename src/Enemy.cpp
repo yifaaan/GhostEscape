@@ -5,6 +5,19 @@
 #include "affiliate/SpriteAnim.h"
 #include "raw/Stats.h"
 
+Enemy* Enemy::AddEnemyChild(Object* parent, Player* target, const glm::vec2& position)
+{
+    auto enemy = new Enemy();
+    enemy->Init();
+    enemy->set_position(position);
+    enemy->set_target(target);
+    if (parent)
+    {
+        parent->AddChildren(enemy);
+    }
+    return enemy;
+}
+
 void Enemy::Init()
 {
     Actor::Init();

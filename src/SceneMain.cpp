@@ -2,7 +2,7 @@
 
 #include "Enemy.h"
 #include "Player.h"
-#include "world/Effect.h"
+#include "Spawner.h"
 
 void SceneMain::Init()
 {
@@ -15,11 +15,15 @@ void SceneMain::Init()
     player_->set_position(world_size_ / 2.f);
     AddChildren(player_);
 
-    auto enemy = new Enemy();
-    enemy->Init();
-    enemy->set_position(world_size_ / 3.f);
-    enemy->set_target(player_);
-    Effect::AddEffectChild(this, "assets/effect/184_3.png", world_size_ / 3.f, 1.f, enemy);
+    // auto enemy = new Enemy();
+    // enemy->Init();
+    // enemy->set_position(world_size_ / 3.f);
+    // enemy->set_target(player_);
+    // Effect::AddEffectChild(this, "assets/effect/184_3.png", world_size_ / 3.f, 1.f, enemy);
+    spawner_ = new Spawner();
+    spawner_->Init();
+    spawner_->set_target(player_);
+    AddChildren(spawner_);
 }
 
 void SceneMain::HandleEvents(SDL_Event& event)

@@ -39,6 +39,7 @@ add_executable(${TARGET}
                     src/affiliate/Collider.cpp
                     src/raw/Stats.cpp
                     src/world/Effect.cpp
+                    src/Spawner.cpp
                     )
 
 target_link_libraries(${TARGET}
