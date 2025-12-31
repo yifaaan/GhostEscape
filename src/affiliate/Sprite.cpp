@@ -19,7 +19,7 @@ void Sprite::Render()
     game_.RenderTexture(texture_, p, size_);
 }
 
-Sprite* AddSpriteChild(ObjectScreen* parent, const std::string& path, float scale, Anchar anchar)
+Sprite* Sprite::AddSpriteChild(ObjectScreen* parent, const std::string& path, float scale, Anchar anchar)
 {
     auto sprite = new Sprite();
     sprite->Init();

@@ -40,6 +40,7 @@ add_executable(${TARGET}
                     src/raw/Stats.cpp
                     src/world/Effect.cpp
                     src/Spawner.cpp
+                    src/screen/UIMouse.cpp
                     )
 
 target_link_libraries(${TARGET}

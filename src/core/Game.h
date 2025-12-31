@@ -79,6 +79,26 @@ public:
         return asset_store_;
     }
 
+    glm::vec2 mouse_position() const
+    {
+        return mouse_position_;
+    }
+
+    void set_mouse_position(const glm::vec2& position)
+    {
+        mouse_position_ = position;
+    }
+
+    SDL_MouseButtonFlags mouse_button_flags() const
+    {
+        return mouse_button_flags_;
+    }
+
+    void set_mouse_button_flags(SDL_MouseButtonFlags flags)
+    {
+        mouse_button_flags_ = flags;
+    }
+
 private:
     glm::vec2 screen_size_{};
     SDL_Window* window_{};
@@ -95,4 +115,7 @@ private:
 
     AssetStore* asset_store_{};
     std::mt19937 gen_{std::random_device{}()};
+
+    glm::vec2 mouse_position_{};
+    SDL_MouseButtonFlags mouse_button_flags_{};
 };

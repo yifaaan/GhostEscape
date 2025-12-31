@@ -100,6 +100,7 @@ void Game::HandleEvents()
 
 void Game::Update(float delta_time)
 {
+    mouse_button_flags_ =  SDL_GetMouseState(&mouse_position_.x, &mouse_position_.y);
     current_scene_->Update(delta_time);
 }
 

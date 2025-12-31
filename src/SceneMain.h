@@ -2,8 +2,10 @@
 
 #include "core/Scene.h"
 
+
 class Spawner;
 class Player;
+class UIMouse;
 
 class SceneMain : public Scene
 {
@@ -23,4 +25,5 @@ private:
     Player* player_{};
 
     Spawner* spawner_{};
+    UIMouse* ui_mouse_{};
 };

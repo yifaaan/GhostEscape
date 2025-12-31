@@ -3,10 +3,12 @@
 #include "Enemy.h"
 #include "Player.h"
 #include "Spawner.h"
+#include "screen/UIMouse.h"
 
 void SceneMain::Init()
 {
     Scene::Init();
+    SDL_HideCursor();
     world_size_ = game_.screen_size() * 3.0f;
     camera_position_ = world_size_ / 2.f - game_.screen_size() / 2.f;
 
@@ -24,6 +26,7 @@ void SceneMain::Init()
     spawner_->Init();
     spawner_->set_target(player_);
     AddChildren(spawner_);
+    ui_mouse_ = UIMouse::AddUIMouseChild(this, "assets/UI/mouse1.png", "assets/UI/mouse2.png", 0.5f, Anchar::kCenter);
 }
 
 void SceneMain::HandleEvents(SDL_Event& event)
