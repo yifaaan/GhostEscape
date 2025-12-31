@@ -8,9 +8,12 @@
 #include <string>
 #include <unordered_map>
 
-class AssetStore {
+class AssetStore
+{
 public:
-    explicit AssetStore(SDL_Renderer* renderer) : renderer_(renderer) {}
+    explicit AssetStore(SDL_Renderer* renderer) : renderer_(renderer)
+    {
+    }
     ~AssetStore() = default;
 
     void LoadTextures(std::string path);
@@ -25,10 +28,22 @@ public:
     Mix_Music* music(std::string path);
     TTF_Font* font(std::string path, int font_size);
 
-    const std::unordered_map<std::string, SDL_Texture*>& textures() const { return textures_; }
-    const std::unordered_map<std::string, Mix_Chunk*> chunks() const { return chunks_; }
-    const std::unordered_map<std::string, Mix_Music*> musics() const { return musics_; }
-    const std::unordered_map<std::string, TTF_Font*> fonts() const { return fonts_; }
+    const std::unordered_map<std::string, SDL_Texture*>& textures() const
+    {
+        return textures_;
+    }
+    const std::unordered_map<std::string, Mix_Chunk*> chunks() const
+    {
+        return chunks_;
+    }
+    const std::unordered_map<std::string, Mix_Music*> musics() const
+    {
+        return musics_;
+    }
+    const std::unordered_map<std::string, TTF_Font*> fonts() const
+    {
+        return fonts_;
+    }
 
 private:
     SDL_Renderer* renderer_{};

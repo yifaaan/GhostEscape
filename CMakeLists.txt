@@ -30,12 +30,14 @@ add_executable(${TARGET}
                     src/core/AssetStore.cpp
                     src/core/Object.cpp
                     src/core/Actor.cpp
+                    src/core/ObjectAffiliate.cpp
                     src/SceneMain.cpp
                     src/Player.cpp
                     src/Enemy.cpp
                     src/affiliate/Sprite.cpp
                     src/affiliate/SpriteAnim.cpp
                     src/affiliate/Collider.cpp
+                    src/raw/Stats.cpp
                     )
 
 target_link_libraries(${TARGET}

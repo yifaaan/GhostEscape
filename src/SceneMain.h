@@ -4,7 +4,8 @@
 
 class Player;
 
-class SceneMain : public Scene {
+class SceneMain : public Scene
+{
 public:
     SceneMain() = default;
     virtual ~SceneMain() = default;

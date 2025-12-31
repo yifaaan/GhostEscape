@@ -3,7 +3,8 @@
 #include "affiliate/SpriteAnim.h"
 #include "core/Actor.h"
 
-class Player : public Actor {
+class Player : public Actor
+{
 public:
     void Init() override;
     void HandleEvents(SDL_Event& event) override;

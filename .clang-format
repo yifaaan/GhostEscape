@@ -1,10 +1,9 @@
 ---
-# Style: Microsoft (Hard-Override for Lambda Alignment)
 Language:        Cpp
-BasedOnStyle:    Google
+BasedOnStyle:    Microsoft
 
 # Physical Limits
-ColumnLimit:     120
+# ColumnLimit:     120
 PointerAlignment: Left
 IndentWidth:     4
 AccessModifierOffset: -4

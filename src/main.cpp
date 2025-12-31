@@ -2,7 +2,8 @@
 
 #include "core/Game.h"
 
-int main(int argc, char* argv[]) {
+int main(int argc, char* argv[])
+{
     auto& game = Game::GetInstance();
     game.Init("GhostEscape", 1280, 720);
 

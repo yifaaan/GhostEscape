@@ -12,7 +12,8 @@ class Scene;
 class AssetStore;
 class Texture;
 
-class Game {
+class Game
+{
 private:
     Game() = default;
     Game(const Game&) = delete;
@@ -21,7 +22,8 @@ private:
 public:
     ~Game() = default;
 
-    static Game& GetInstance() {
+    static Game& GetInstance()
+    {
         static Game game;
         return game;
     }
@@ -38,12 +40,21 @@ public:
                       SDL_FColor fcolor);
     void RenderTexture(const Texture& texture, const glm::vec2& position, const glm::vec2& size);
     void RenderFillCircle(const glm::vec2& position, const glm::vec2& size, float alpha);
-    
-    glm::vec2 screen_size() const { return screen_size_; }
 
-    Scene* current_scene() { return current_scene_; }
+    glm::vec2 screen_size() const
+    {
+        return screen_size_;
+    }
 
-    AssetStore* asset_store() { return asset_store_; }
+    Scene* current_scene()
+    {
+        return current_scene_;
+    }
+
+    AssetStore* asset_store()
+    {
+        return asset_store_;
+    }
 
 private:
     glm::vec2 screen_size_{};
