@@ -5,6 +5,11 @@
 
 void Object::HandleEvents(SDL_Event& event)
 {
+    for (auto c : children_to_add_)
+    {
+        children_.push_back(c);
+    }
+    children_to_add_.clear();
     for (auto* c : children_ | std::views::filter(&Object::is_active))
     {
         c->HandleEvents(event);
@@ -13,6 +18,11 @@ void Object::HandleEvents(SDL_Event& event)
 
 void Object::Update(float delta_time)
 {
+    for (auto c : children_to_add_)
+    {
+        children_.push_back(c);
+    }
+    children_to_add_.clear();
     std::erase_if(children_, [](Object* c) {
         if (!c->need_remove())
             return false;

@@ -38,6 +38,7 @@ add_executable(${TARGET}
                     src/affiliate/SpriteAnim.cpp
                     src/affiliate/Collider.cpp
                     src/raw/Stats.cpp
+                    src/world/Effect.cpp
                     )
 
 target_link_libraries(${TARGET}

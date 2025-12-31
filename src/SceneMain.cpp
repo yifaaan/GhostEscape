@@ -2,6 +2,7 @@
 
 #include "Enemy.h"
 #include "Player.h"
+#include "world/Effect.h"
 
 void SceneMain::Init()
 {
@@ -18,7 +19,7 @@ void SceneMain::Init()
     enemy->Init();
     enemy->set_position(world_size_ / 3.f);
     enemy->set_target(player_);
-    AddChildren(enemy);
+    Effect::AddEffectChild(this, "assets/effect/184_3.png", world_size_ / 3.f, 1.f, enemy);
 }
 
 void SceneMain::HandleEvents(SDL_Event& event)

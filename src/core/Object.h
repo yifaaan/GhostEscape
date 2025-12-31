@@ -19,6 +19,10 @@ public:
     virtual void Render();
     virtual void Clean();
 
+    void SafeAddChildren(Object* object)
+    {
+        children_to_add_.push_back(object);
+    }
     virtual void AddChildren(Object* object)
     {
         children_.push_back(object);
@@ -58,6 +62,7 @@ public:
 protected:
     Game& game_ = Game::GetInstance();
     std::vector<Object*> children_;
+    std::vector<Object*> children_to_add_;
     ObjectType type_{ObjectType::kNone};
     bool is_active_{true};
     bool need_remove_{};
